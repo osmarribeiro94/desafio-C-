@@ -15,29 +15,31 @@ namespace challenge.Repository
         {
             return await _context.Turmas.ToListAsync();
         }
+
+         public void AdicionaTurma(Turma turma)
+        {
+            _context.Add(turma);
+        }
+
         public async Task<Turma> BuscaTurma(int id)
         {
             return await _context.Turmas.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        //  public void AdicionaAluno(Aluno aluno)
-        // {
-        //     _context.Add(aluno);
-        // }
 
-        // public void AtualizaAluno(Aluno aluno)
-        // {
-        //     _context.Update(aluno);
-        // }
+        public void AtualizaTurma(Turma turma)
+        {
+            _context.Update(turma);
+        }
 
-        // public void DeletaAluno(Aluno aluno)
-        // {
-        //     _context.Remove(aluno);
-        // }
+        public void DeletaTurma(Turma turma)
+        {
+            _context.Remove(turma);
+        }
 
-        // public async Task<bool> SaveChangesAsync()
-        // {
-        //     return await _context.SaveChangesAsync() > 0;
-        // }
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

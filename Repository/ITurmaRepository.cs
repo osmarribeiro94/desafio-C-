@@ -5,11 +5,11 @@ namespace challenge.Repository
     public interface ITurmaRepository
     {
         Task<IEnumerable<Turma>> BuscaTurmas();
+        void AdicionaTurma(Turma turma);
         Task<Turma> BuscaTurma(int id);
-        // void AdicionaAluno(Aluno aluno);
-        // void AtualizaAluno(Aluno aluno);
-        // void DeletaAluno(Aluno aluno);
+        void AtualizaTurma(Turma turma);
+        void DeletaTurma(Turma turma);
 
-        // Task<bool> SaveChangesAsync();
+        Task<bool> SaveChangesAsync();
     }
 }

@@ -20,45 +20,46 @@ namespace challenge.Controllers
             var turmas = await _repository.BuscaTurmas();
             return turmas.Any() ? Ok(turmas) : NoContent();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Turma turma)
+        {
+            _repository.AdicionaTurma(turma);
+            return await _repository.SaveChangesAsync() ? Ok("Turma adicionado com sucesso") : BadRequest("Erro ao salvar a turma.");
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var turma = await _repository.BuscaTurma(id);
-            return turma != null ? Ok(turma) : NotFound("Aluno não encontrado");
+            return turma != null ? Ok(turma) : NotFound("Turma não encontrado");
         }
-        // [HttpPost]
-        // public async Task<IActionResult> Post(Aluno aluno)
-        // {
-        //     _repository.AdicionaAluno(aluno);
-        //     return await _repository.SaveChangesAsync() ? Ok("Aluno adicionado com sucesso") : BadRequest("Erro ao salvar o aluno.");
-        // }
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> Put(int id, Aluno aluno)
-        // {
-        //     var alunoBanco = await _repository.BuscaAluno(id);
-        //     if (alunoBanco == null) return NotFound("Aluno não encontrado");
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Turma turma)
+        {
+            var turmaBanco = await _repository.BuscaTurma(id);
+            if (turmaBanco == null) return NotFound("Turma não encontrado");
 
-        //     alunoBanco.Nome = aluno.Nome ?? alunoBanco.Nome;
-        //     alunoBanco.Matricula = aluno.Matricula ?? alunoBanco.Matricula;
-        //     alunoBanco.DtNascimento = aluno.DtNascimento != new DateTime() ? aluno.DtNascimento : alunoBanco.DtNascimento;
+            turmaBanco.Nome = turma.Nome ?? turmaBanco.Nome;
+            turmaBanco.Turno = turma.Turno == turmaBanco.Turno ? turmaBanco.Turno : turma.Turno;
 
-        //     _repository.AtualizaAluno(alunoBanco);
+            _repository.AtualizaTurma(turmaBanco);
+            
+            return await _repository.SaveChangesAsync() ? Ok("Turma atualizado com sucesso") : BadRequest("Erro ao atualizar a turma");
+        }
 
-        //     return await _repository.SaveChangesAsync() ? Ok("Aluno atualizado com sucesso") : BadRequest("Erro ao atualizar o aluno");
-        // }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var turmaBanco = await _repository.BuscaTurma(id);
+            if (turmaBanco == null) return NotFound("Turma não encontrado");
 
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> Delete(int id)
-        // {
-        //     var alunoBanco = await _repository.BuscaAluno(id);
-        //     if (alunoBanco == null) return NotFound("Aluno não encontrado");
+            _repository.DeletaTurma(turmaBanco);
 
-        //     _repository.DeletaAluno(alunoBanco);
+            return await _repository.SaveChangesAsync() ? Ok("Turma deletado com sucesso") : BadRequest("Erro ao deletado a turma");
+        }
 
-        //     return await _repository.SaveChangesAsync() ? Ok("Aluno deletado com sucesso") : BadRequest("Erro ao deletado o aluno");
-        // }
-       
 
     }
 }
