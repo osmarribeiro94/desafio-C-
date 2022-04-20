@@ -11,25 +11,25 @@ namespace challenge.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Alunos",
+                name: "tb_aluno",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Matricula = table.Column<string>(type: "text", nullable: false),
-                    Nome = table.Column<string>(type: "text", nullable: false),
-                    DtNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    matricula = table.Column<string>(type: "text", nullable: false),
+                    nome = table.Column<string>(type: "text", nullable: false),
+                    data_nascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Alunos", x => x.Id);
+                    table.PrimaryKey("PK_tb_aluno", x => x.id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alunos");
+                name: "tb_aluno");
         }
     }
 }

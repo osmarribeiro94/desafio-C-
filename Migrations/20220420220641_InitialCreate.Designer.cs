@@ -12,8 +12,8 @@ using challenge.Data;
 namespace challenge.Migrations
 {
     [DbContext(typeof(AlunoContext))]
-    [Migration("20220419233651_AtualizacaoAluno")]
-    partial class AtualizacaoAluno
+    [Migration("20220420220641_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,7 @@ namespace challenge.Migrations
                         .HasColumnName("data_nascimento");
 
                     b.Property<string>("Matricula")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("matricula");
 

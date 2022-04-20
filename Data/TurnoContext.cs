@@ -1,28 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using challenge.Model;
 
 namespace challenge.Data
 {
-    public class TurmaContext : DbContext
+    public class TurnoContext : DbContext
     {
-        public TurmaContext(DbContextOptions<TurmaContext> options) : base(options)
+        public TurnoContext(DbContextOptions<TurnoContext> options) : base(options)
         {
         }
 
-        public DbSet<Turma> Turmas { get; set; }
+        public DbSet<Turno> Turnos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var turma = modelBuilder.Entity<Turma>();
-            turma.ToTable("tb_turma");
+            var turma = modelBuilder.Entity<Turno>();
+            turma.ToTable("tb_turno");
             turma.HasKey(x => x.Id);
             turma.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
             turma.Property(x => x.Nome).HasColumnName("nome").IsRequired();
-            turma.Property(x => x.TurnoId).HasColumnName("turno");
-            turma.HasOne(x => x.Turno).WithMany().HasForeignKey(x => x.TurnoId);
         }
     }
 }

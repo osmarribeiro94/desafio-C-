@@ -36,6 +36,7 @@ namespace challenge.Migrations
                         .HasColumnName("data_nascimento");
 
                     b.Property<string>("Matricula")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("matricula");
 
