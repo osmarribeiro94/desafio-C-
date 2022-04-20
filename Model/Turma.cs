@@ -10,7 +10,7 @@ namespace challenge.Model
         public String Nome { get; set; }
 
         [ForeignKey("Turno")]
-        public int Turno { get; set; }
-        public virtual Turno TurnoId { get; set; }
+        public int TurnoId { get; set; }
+        public virtual Turno Turno { get; set; }
     }
 }
