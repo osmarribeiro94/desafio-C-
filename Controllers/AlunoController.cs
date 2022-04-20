@@ -49,7 +49,7 @@ namespace challenge.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id, Aluno aluno)
+        public async Task<IActionResult> Delete(int id)
         {
             var alunoBanco = await _repository.BuscaAluno(id);
             if (alunoBanco == null) return NotFound("Aluno não encontrado");
