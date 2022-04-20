@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/noix/git/challenge/challenge.csproj": {}
+    "/home/osmarribeiro/git/desafio-C-/challenge.csproj": {}
   },
   "projects": {
-    "/home/noix/git/challenge/challenge.csproj": {
+    "/home/osmarribeiro/git/desafio-C-/challenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/noix/git/challenge/challenge.csproj",
+        "projectUniqueName": "/home/osmarribeiro/git/desafio-C-/challenge.csproj",
         "projectName": "challenge",
-        "projectPath": "/home/noix/git/challenge/challenge.csproj",
-        "packagesPath": "/home/noix/.nuget/packages/",
-        "outputPath": "/home/noix/git/challenge/obj/",
+        "projectPath": "/home/osmarribeiro/git/desafio-C-/challenge.csproj",
+        "packagesPath": "/home/osmarribeiro/.nuget/packages/",
+        "outputPath": "/home/osmarribeiro/git/desafio-C-/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/noix/.nuget/NuGet/NuGet.Config"
+          "/home/osmarribeiro/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

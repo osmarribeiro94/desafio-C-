@@ -12,12 +12,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Aluno
 builder.Services.AddDbContext<AlunoContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
-
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+
+// Turma
+builder.Services.AddDbContext<TurmaContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+});
+builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+
 
 var app = builder.Build();
 
