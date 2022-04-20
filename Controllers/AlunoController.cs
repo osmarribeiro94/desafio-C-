@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using challenge.Model;
+using challenge.Repository;
 
 namespace challenge.Controllers
 {
@@ -7,24 +8,55 @@ namespace challenge.Controllers
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
-        private static List<Aluno> Alunos()
+        private readonly IAlunoRepository _repository;
+        public AlunoController(IAlunoRepository repository)
         {
-            return new List<Aluno>{
-                new Aluno{Nome="Lucas", Id=1, Matricula= "1", DtNascimento = new DateTime()}
-        };
+            _repository = repository;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(Alunos());
+            var alunos = await _repository.BuscaAlunos();
+            return alunos.Any() ? Ok(alunos) : NoContent();
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var aluno = await _repository.BuscaAluno(id);
+            return aluno != null ? Ok(aluno) : NotFound("Aluno não encontrado");
         }
         [HttpPost]
-        public IActionResult Post(Aluno aluno)
+        public async Task<IActionResult> Post(Aluno aluno)
         {
-            var alunos = Alunos();
-            alunos.Add(aluno);
-            return Ok(alunos);
+            _repository.AdicionaAluno(aluno);
+            return await _repository.SaveChangesAsync() ? Ok("Aluno adicionado com sucesso") : BadRequest("Erro ao salvar o aluno.");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Aluno aluno)
+        {
+            var alunoBanco = await _repository.BuscaAluno(id);
+            if (alunoBanco == null) return NotFound("Aluno não encontrado");
+
+            alunoBanco.Nome = aluno.Nome ?? alunoBanco.Nome;
+            alunoBanco.Matricula = aluno.Matricula ?? alunoBanco.Matricula;
+            alunoBanco.DtNascimento = aluno.DtNascimento != new DateTime() ? aluno.DtNascimento : alunoBanco.DtNascimento;
+
+            _repository.AtualizaAluno(alunoBanco);
+
+            return await _repository.SaveChangesAsync() ? Ok("Aluno atualizado com sucesso") : BadRequest("Erro ao atualizar o aluno");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id, Aluno aluno)
+        {
+            var alunoBanco = await _repository.BuscaAluno(id);
+            if (alunoBanco == null) return NotFound("Aluno não encontrado");
+
+            _repository.DeletaAluno(alunoBanco);
+
+            return await _repository.SaveChangesAsync() ? Ok("Aluno deletado com sucesso") : BadRequest("Erro ao deletado o aluno");
         }
 
     }
