@@ -4,13 +4,13 @@ using challenge.Repository;
 using challenge.DTO;
 namespace challenge.Controllers
 {
-     [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     public class ChamadaController : ControllerBase
     {
-            private readonly IChamadaRepository _repository;
-            private readonly ITurmaRepository _turmaRepository;
-            private readonly IAlunoRepository _alunoRepository;
+        private readonly IChamadaRepository _repository;
+        private readonly ITurmaRepository _turmaRepository;
+        private readonly IAlunoRepository _alunoRepository;
         public ChamadaController(IChamadaRepository repository, ITurmaRepository turmaRepository, IAlunoRepository alunoRepository)
         {
             _repository = repository;
@@ -23,7 +23,8 @@ namespace challenge.Controllers
         {
             var aluno = await _alunoRepository.BuscaAluno(newChamada.idAluno);
 
-            if(aluno != null){
+            if (aluno != null)
+            {
                 var chamada = new Chamada();
                 chamada.idAluno = aluno.Id;
                 chamada.idTurma = aluno.Turmas.Id;
@@ -32,7 +33,9 @@ namespace challenge.Controllers
 
                 _repository.registraPresenca(chamada);
                 return await _repository.SaveChangesAsync() ? Ok("Chamada registrada com sucesso") : BadRequest("Erro ao registrar chamada.");
-            } else {
+            }
+            else
+            {
                 return BadRequest("Erro ao registrar chamada.");
             }
         }
@@ -40,7 +43,7 @@ namespace challenge.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var chamadas =  _repository.buscaChamadas();
+            var chamadas = _repository.buscaChamadas();
             return chamadas.Any() ? Ok(chamadas) : NoContent();
         }
     }

@@ -5,7 +5,7 @@ namespace challenge.Repository
     {
         void registraPresenca(Chamada chamada);
 
-         public  List<Chamada> buscaChamadas();
+        public List<Chamada> buscaChamadas();
         Task<bool> SaveChangesAsync();
     }
 }

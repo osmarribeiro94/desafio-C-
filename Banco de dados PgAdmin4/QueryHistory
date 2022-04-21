@@ -1,0 +1,87 @@
+Query History
+
+//Turma
+INSERT INTO public."Turma"(
+"Id", "Nome", "TurnosId")
+VALUES (1, 'turmaA', 1);
+	
+INSERT INTO public."Turma"(
+"Id", "Nome", "TurnosId")
+VALUES (2, 'turmaB', 2);
+	
+INSERT INTO public."Turma"(
+"Id", "Nome", "TurnosId")
+VALUES (3, 'turmaC', 3);
+
+
+//Turno	
+INSERT INTO public."Turno"(
+"Id", "Nome")
+VALUES (1, 'Matutino');
+
+INSERT INTO public."Turno"(
+"Id", "Nome")
+VALUES (2, 'Vespertino');
+
+INSERT INTO public."Turno"(
+"Id", "Nome")
+VALUES (3, 'Noturno');
+
+
+//Aluno
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (1, '123', 'joao', '10/10/10', 1);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (2, '456', 'maria', '10/10/10', 2);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (3, '789', 'jose', '10/10/10', 3);
+
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (4, '777', 'nome1', '10/10/10', 1);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (5, '666', 'nome2', '10/10/10', 1);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (6, '555', 'nome3', '10/10/10', 2);
+
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (7, '444', 'nome4', '10/10/10', 2);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (8, '333', 'nome5', '10/10/10', 3);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (9, '222', 'nome6', '10/10/10', 3);
+	
+INSERT INTO public.tb_aluno(
+id, matricula, nome, data_nascimento, "TurmasId")
+VALUES (10, '111', 'nome7', '10/10/10', 1);
+
+
+//Chamada
+INSERT INTO public."Chamada"(
+id, id_aluno, id_turma, data, presenca)
+VALUES (1, 1, 1, '21/04/22', true);
+	
+INSERT INTO public."Chamada"(
+id, id_aluno, id_turma, data, presenca)
+VALUES (2, 2, 1, '10/10/10', true);	
+
+INSERT INTO public."Chamada"(
+id, id_aluno, id_turma, data, presenca)
+VALUES (3, 3, 2, '06/06/06', false);
+
+
+

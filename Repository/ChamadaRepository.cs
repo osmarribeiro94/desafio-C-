@@ -2,25 +2,25 @@ using challenge.Model;
 using challenge.Data;
 namespace challenge.Repository
 {
-    public class ChamadaRepository: IChamadaRepository
-    
+    public class ChamadaRepository : IChamadaRepository
+
     {
-          private readonly ChamadaContext _context;
+        private readonly ChamadaContext _context;
         public ChamadaRepository(ChamadaContext repository)
         {
             _context = repository;
         }
-           public void registraPresenca(Chamada chamada)
+        public void registraPresenca(Chamada chamada)
         {
             _context.Add(chamada);
         }
 
-         public  List<Chamada> buscaChamadas()
+        public List<Chamada> buscaChamadas()
         {
-            return  _context.chamadas.ToList();
+            return _context.chamadas.ToList();
         }
 
-         public async Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
