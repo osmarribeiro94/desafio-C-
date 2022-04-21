@@ -21,28 +21,6 @@ namespace challenge.Migrations.Turno
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("challenge.Model.Turma", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("TurnoId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TurnoId");
-
-                    b.ToTable("Turma");
-                });
-
             modelBuilder.Entity("challenge.Model.Turno", b =>
                 {
                     b.Property<int>("Id")
@@ -59,23 +37,7 @@ namespace challenge.Migrations.Turno
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_turno", (string)null);
-                });
-
-            modelBuilder.Entity("challenge.Model.Turma", b =>
-                {
-                    b.HasOne("challenge.Model.Turno", "Turno")
-                        .WithMany("Turmas")
-                        .HasForeignKey("TurnoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Turno");
-                });
-
-            modelBuilder.Entity("challenge.Model.Turno", b =>
-                {
-                    b.Navigation("Turmas");
+                    b.ToTable("Turno", (string)null);
                 });
 #pragma warning restore 612, 618
         }

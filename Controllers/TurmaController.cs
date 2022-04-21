@@ -42,7 +42,7 @@ namespace challenge.Controllers
             if (turmaBanco == null) return NotFound("Turma não encontrado");
 
             turmaBanco.Nome = turma.Nome ?? turmaBanco.Nome;
-            turmaBanco.Turno = turma.Turno == turmaBanco.Turno ? turmaBanco.Turno : turma.Turno;
+            // turmaBanco.Turno = turma.Turno == turmaBanco.Turno ? turmaBanco.Turno : turma.Turno;
 
             _repository.AtualizaTurma(turmaBanco);
             

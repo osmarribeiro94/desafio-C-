@@ -10,8 +10,7 @@ namespace challenge.Model
         public int Id { get; set; }
         public String Nome { get; set; }
 
-        public int TurnoId { get; set; }
-        public Turno Turno { get; set; }
+        public virtual Turno Turnos {get; set;}
 
     }
 }

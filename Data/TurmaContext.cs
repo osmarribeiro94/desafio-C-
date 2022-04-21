@@ -17,12 +17,11 @@ namespace challenge.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var turma = modelBuilder.Entity<Turma>();
-            turma.ToTable("tb_turma");
+            turma.ToTable("Turma");
             turma.HasKey(x => x.Id);
-            turma.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            turma.Property(x => x.Nome).HasColumnName("nome").IsRequired();
-            turma.Property(x => x.TurnoId).HasColumnName("turno");
-            turma.HasOne(x => x.Turno).WithMany().HasForeignKey(x => x.TurnoId);
+            turma.Property(x => x.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            turma.Property(x => x.Nome).HasColumnName("Nome");
+            // turma.Property(x => x.Turno).HasColumnName("turno");
         }
     }
 }

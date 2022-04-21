@@ -13,7 +13,7 @@ namespace challenge.Repository
         }
         public async Task<IEnumerable<Turma>> BuscaTurmas()
         {
-            return await _context.Turmas.ToListAsync();
+            return await _context.Turmas.Include(x => x.Turnos).ToListAsync();
         }
 
          public void AdicionaTurma(Turma turma)
@@ -23,7 +23,7 @@ namespace challenge.Repository
 
         public async Task<Turma> BuscaTurma(int id)
         {
-            return await _context.Turmas.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Turmas.Include(x => x.Turnos).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
 

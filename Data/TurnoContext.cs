@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata;
 using challenge.Model;
 
 namespace challenge.Data
@@ -12,15 +12,14 @@ namespace challenge.Data
         {
         }
 
-        public DbSet<Turno> Turnos { get; set; }
-
+        public DbSet<Turno> turnos {get; set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var turma = modelBuilder.Entity<Turno>();
-            turma.ToTable("tb_turno");
-            turma.HasKey(x => x.Id);
-            turma.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            turma.Property(x => x.Nome).HasColumnName("nome").IsRequired();
+            var turno = modelBuilder.Entity<Turno>();
+            turno.ToTable("Turno");
+            turno.HasKey(x => x.Id);
+            turno.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            turno.Property(x => x.Nome).HasColumnName("nome");
         }
     }
 }

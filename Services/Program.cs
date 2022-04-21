@@ -19,7 +19,7 @@ builder.Services.AddDbContext<AlunoContext>(options =>
 });
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 
-// Turma
+// // Turma
 builder.Services.AddDbContext<TurmaContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
@@ -31,6 +31,7 @@ builder.Services.AddDbContext<TurnoContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 
 
 var app = builder.Build();

@@ -6,5 +6,8 @@ namespace challenge.Model
         public String Matricula { get; set; }
         public String Nome { get; set; }
         public DateTime DtNascimento { get; set; }
+
+        public virtual Turma Turmas {get; set;}
+
     }
 }

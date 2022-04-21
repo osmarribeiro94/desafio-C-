@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using challenge.Model;
+using challenge.DTO;
 using challenge.Repository;
 
 namespace challenge.Controllers
@@ -9,9 +10,11 @@ namespace challenge.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoRepository _repository;
-        public AlunoController(IAlunoRepository repository)
+        private readonly ITurmaRepository _turmaRepository;
+        public AlunoController(IAlunoRepository repository, ITurmaRepository turmaRepository)
         {
             _repository = repository;
+            _turmaRepository = turmaRepository;
         }
 
         [HttpGet]
@@ -26,9 +29,20 @@ namespace challenge.Controllers
             var aluno = await _repository.BuscaAluno(id);
             return aluno != null ? Ok(aluno) : NotFound("Aluno não encontrado");
         }
-        [HttpPost]
-        public async Task<IActionResult> Post(Aluno aluno)
+
+        [HttpGet("turma-id/{turmaId}")]
+        public async Task<IActionResult> GetByTurmaId(int turmaId)
         {
+            var alunos = await _repository.BuscaAlunosByTurmaId(turmaId);
+            return alunos != null ? Ok(alunos) : NotFound("Aluno não encontrado");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(AlunoDTO newAluno)
+        {
+            var aluno = new Aluno();
+            aluno.Matricula = newAluno.Matricula;
+            aluno.Nome = newAluno.Nome;
+            aluno.Turmas = await _turmaRepository.BuscaTurma(newAluno.TurmaId);
             _repository.AdicionaAluno(aluno);
             return await _repository.SaveChangesAsync() ? Ok("Aluno adicionado com sucesso") : BadRequest("Erro ao salvar o aluno.");
         }

@@ -17,13 +17,19 @@ namespace challenge.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           var aluno = modelBuilder.Entity<Aluno>();
-           aluno.ToTable("tb_aluno");
-           aluno.HasKey(x => x.Id);
-           aluno.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-           aluno.Property(x => x.Nome).HasColumnName("nome").IsRequired();
-           aluno.Property(x => x.Matricula).HasColumnName("matricula");
-           aluno.Property(x => x.DtNascimento).HasColumnName("data_nascimento");
+            // var turma = modelBuilder.Entity<Turma>();
+
+            var aluno = modelBuilder.Entity<Aluno>();
+            aluno.ToTable("tb_aluno");
+            aluno.HasKey(x => x.Id);
+            aluno.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            aluno.Property(x => x.Nome).HasColumnName("nome").IsRequired();
+            aluno.Property(x => x.Matricula).HasColumnName("matricula");
+            aluno.Property(x => x.DtNascimento).HasColumnName("data_nascimento");
+            // aluno.<Turma>(x => x.)
+
+
+
         }
     }
 }

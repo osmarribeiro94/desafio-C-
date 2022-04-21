@@ -1,35 +1,32 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace challenge.Migrations
+namespace challenge.Migrations.Turno
 {
-    public partial class InitialCreate : Migration
+    public partial class InicioCreate2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tb_aluno",
+                name: "Turno",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    matricula = table.Column<string>(type: "text", nullable: false),
-                    nome = table.Column<string>(type: "text", nullable: false),
-                    data_nascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    nome = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_aluno", x => x.id);
+                    table.PrimaryKey("PK_Turno", x => x.id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_aluno");
+                name: "Turno");
         }
     }
 }

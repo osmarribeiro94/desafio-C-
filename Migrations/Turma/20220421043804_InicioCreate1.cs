@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace challenge.Migrations.Turma
 {
-    public partial class InitialCreate1 : Migration
+    public partial class InicioCreate1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,46 +23,35 @@ namespace challenge.Migrations.Turma
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_turma",
+                name: "Turma",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(type: "text", nullable: false),
-                    turno = table.Column<int>(type: "integer", nullable: false),
-                    TurnoId1 = table.Column<int>(type: "integer", nullable: true)
+                    Nome = table.Column<string>(type: "text", nullable: false),
+                    TurnosId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_turma", x => x.id);
+                    table.PrimaryKey("PK_Turma", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tb_turma_Turno_turno",
-                        column: x => x.turno,
+                        name: "FK_Turma_Turno_TurnosId",
+                        column: x => x.TurnosId,
                         principalTable: "Turno",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tb_turma_Turno_TurnoId1",
-                        column: x => x.TurnoId1,
-                        principalTable: "Turno",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_turma_turno",
-                table: "tb_turma",
-                column: "turno");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tb_turma_TurnoId1",
-                table: "tb_turma",
-                column: "TurnoId1");
+                name: "IX_Turma_TurnosId",
+                table: "Turma",
+                column: "TurnosId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_turma");
+                name: "Turma");
 
             migrationBuilder.DropTable(
                 name: "Turno");

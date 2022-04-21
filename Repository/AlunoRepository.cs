@@ -23,7 +23,12 @@ namespace challenge.Repository
 
         public async Task<IEnumerable<Aluno>> BuscaAlunos()
         {
-            return await _context.Alunos.ToListAsync();
+            return await _context.Alunos.Include(x => x.Turmas).Include(x => x.Turmas.Turnos).ToListAsync();
+        }
+
+          public async Task<IEnumerable<Aluno>> BuscaAlunosByTurmaId(int turmaId)
+        {
+            return await _context.Alunos.Include(x =>x.Turmas).Include(x => x.Turmas.Turnos).Where(x => x.Turmas.Id == turmaId).ToListAsync();
         }
         public async Task<Aluno> BuscaAluno(int id)
         {
