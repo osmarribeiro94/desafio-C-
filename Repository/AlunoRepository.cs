@@ -32,7 +32,7 @@ namespace challenge.Repository
         }
         public async Task<Aluno> BuscaAluno(int id)
         {
-             return await _context.Alunos.Where(x => x.Id == id).FirstOrDefaultAsync();
+             return await _context.Alunos.Include(x =>x.Turmas).Include(x => x.Turmas.Turnos).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public void DeletaAluno(Aluno aluno)

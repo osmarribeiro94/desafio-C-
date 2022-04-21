@@ -33,6 +33,14 @@ builder.Services.AddDbContext<TurnoContext>(options =>
 });
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 
+// Chamada
+builder.Services.AddDbContext<ChamadaContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+});
+builder.Services.AddScoped<IChamadaRepository, ChamadaRepository>();
+
+
 
 var app = builder.Build();
 
